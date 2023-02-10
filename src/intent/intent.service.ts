@@ -9,7 +9,7 @@ export class IntentService {
     private client;
     private path;
 
-    constructor(@Optional() location = 'global') {
+    constructor(@Optional() location:string = process.env.APP_LOCATION) {
         this.location = location;
         this.client = new SessionsClient({
             ...dialogflowConfig,
@@ -21,15 +21,8 @@ export class IntentService {
     /**
      * getResponse
      */
-    public getResponse() {
-        const sessionId = uuid();
-
-      console.log(sessionId);
-      
-      
-      console.log("hú hú");
-      
-      const agentId = this.client.matchAgentFromAgentName('uway-chatbox');
+    public getResponse(agentId:string, text:string) {
+      const sessionId = uuid();
       // console.log(agentId);
 
       // console.log(" " + sessionPath);
@@ -46,13 +39,13 @@ export class IntentService {
           session: sessionPath,
           queryInput: {
             text: {
-              text: "introduce",
+              text,
             },
             languageCode: "en",
           },
         };
 
-        // projects/chatbot-uway/locations/us-central1/agents/77909061-dddc-4fb9-9505-3f3c0f63049d
+      // projects/chatbot-uway/locations/us-central1/agents/77909061-dddc-4fb9-9505-3f3c0f63049d
       const [response] = this.client.detectIntent(request);
       console.log(response.queryResult.responseMessages[0].text.text);
     }

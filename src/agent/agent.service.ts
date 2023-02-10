@@ -13,7 +13,7 @@ export class AgentService {
     private client: any;
     private location: string;
     private path: string; 
-    constructor(@Optional() location = 'global') {
+    constructor(@Optional() location = process.env.APP_LOCATION) {
         this.location = location;
         this.client = new AgentsClient({
             ...dialogflowConfig,

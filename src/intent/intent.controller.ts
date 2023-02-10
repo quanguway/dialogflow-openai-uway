@@ -11,6 +11,6 @@ export class IntentController {
      */
     @Get('/getResponse')
     public getResponse(@Body('agent_id') agentId, @Body('text') text) {
-        return this.intentService.getResponse();
+        return this.intentService.getResponse(agentId, text);
     }
 }

@@ -9,19 +9,20 @@ export class EntityController {
     /**
      * createEntity
      */
-    @Post('/')
-    public createEntity(@Body('agent_id')agentId , @Body('entity_type') entityType) {
-        // projects/chatbot-uway/locations/us-central1/agents/77909061-dddc-4fb9-9505-3f3c0f63049d
-        return this.entityService.createEntity('77909061-dddc-4fb9-9505-3f3c0f63049d', entityType);
+    @Post('')
+    public createEntity(@Body('agent_id') agentId , @Body('entity_type') entityType) {
+        // projects/chatbot-uway/locations/global/agents/1d5fd8c5-6111-44b6-8393-b8d4a3860299
+        console.log(entityType);
+        console.log(agentId);
+        
+        return this.entityService.createEntity(agentId, entityType);
     }
 
     /**
      * getEntity
      */
-    @Get(':agent_id&:entity_id')
-    public getEntity(@Param('agent_id') agentId, @Param('entity_id') entityId) {
-        console.log("haha");
-        
+    @Get('')
+    public getEntity(@Body('agent_id') agentId, @Body('entity_id') entityId) {
         return this.entityService.getEntity(agentId, entityId);
     }
 }

@@ -11,10 +11,9 @@ export class AgentController {
      */
     @Post('/')
     public createAgent(
-        @Body('displayName') displayName,
-        @Body('defaultLanguageCode') defaultLanguageCode,
-        @Body('timeZone') timeZone) {
-        console.log("vào vào");
+        @Body('display_name') displayName,
+        @Body('default_language_code') defaultLanguageCode,
+        @Body('time_zone') timeZone) {
         
         const params = {
             displayName: displayName,
